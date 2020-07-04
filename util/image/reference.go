@@ -3,6 +3,7 @@ package image
 import (
 	"errors"
 	"fmt"
+	"github.com/keel-hq/keel/util/loader"
 	"strings"
 
 	// "github.com/docker/distribution/digest"
@@ -15,14 +16,19 @@ const (
 	DefaultTag = "latest"
 	// DefaultRegistryHostname is the default built-in hostname
 	// DefaultRegistryHostname = "index.docker.io"
-	WrongRegistryHostname   = "docker.io"
-	DefaultRegistryHostname = "index.docker.io"
+	//WrongRegistryHostname   = "docker.io"
+	//DefaultRegistryHostname = "index.docker.io"
 
 	// DefaultScheme is default scheme for registries
 	DefaultScheme = "https"
 
 	// DefaultRepoPrefix is the prefix used for default repositories in default host
 	DefaultRepoPrefix = "library/"
+)
+
+var (
+	DefaultRegistryHostname = loader.LoadEnvOrDefault("defaultRegistry", "index.docker.io")
+	WrongRegistryHostname = loader.LoadEnvOrDefault("wrongRegistry", "docker.io")
 )
 
 // Repository is an object created from Named interface
